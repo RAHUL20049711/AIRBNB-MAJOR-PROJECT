@@ -1,3 +1,8 @@
+if(process.env.NODE_ENV !== "production"){
+    require('dotenv').config()  //only for development not for production
+}
+
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
