@@ -31,6 +31,7 @@ const listingSchema = new Schema({
     type: {
       type: String, // Don't do `{ location: { type: String } }`
       enum: ['Point'], // 'location.type' must be 'Point'
+      default: 'Point' ,// Set default type
       required: true
     },
     coordinates: {
@@ -38,6 +39,8 @@ const listingSchema = new Schema({
       required: true
     }
   }
+  
+  
 });
 
 listingSchema.post("findOneAndDelete", async (listing)=>{
