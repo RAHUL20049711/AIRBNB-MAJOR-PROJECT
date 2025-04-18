@@ -129,3 +129,17 @@ body{
 .star{
     color: rgb(255, 214, 110)
 }
+
+
+/* .listing-image{
+    width:25px ;
+    height:25px ;
+} */ 
+
+/* Map */
+#map{
+    height:400px;
+    width:80%;
+    border-radius: 12px;
+    
+}
