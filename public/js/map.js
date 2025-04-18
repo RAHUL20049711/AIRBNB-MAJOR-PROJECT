@@ -5,49 +5,24 @@ center: listing.geometry.coordinates, // starting position [lng, lat]
 zoom: 9 // starting zoom
 });
 
-// map.on('load', () => {
-//     // Load an image from an external URL.
-//     map.loadImage(
-//         'https://docs.mapbox.com/mapbox-gl-js/assets/cat.png',
-//         (error, image) => {
-//             if (error) throw error;
-
-//             // Add the image to the map style.
-//             map.addImage('cat', image);
-
-//             // Add a data source containing one point feature.
-//             map.addSource('point', {
-//                 'type': 'geojson',
-//                 'data': {
-//                     'type': 'FeatureCollection',
-//                     'features': [
-//                         {
-//                             'type': 'Feature',
-//                             'geometry': {
-//                                 'type': 'Point',
-//                                 'coordinates': listing.geometry.coordinates //Listing.geometry.coordinates[0],Listing.geometry.coordinates[1]
-//                             }
-//                         }
-//                     ]
-//                 }
-//             });
-
-//             // Add a layer to use the image to represent the data.
-//             map.addLayer({
-//                 'id': 'points',
-//                 'type': 'symbol',
-//                 'source': 'point', // reference the data source
-//                 'layout': {
-//                     'icon-image': 'cat', // reference the image
-//                     'icon-size': 0.25
-//                 }
-//             });
-//         }
-//     );
-// });
 
 
-const marker= new maplibregl.Marker({color: "red"}, )
+const customMarker = document.createElement('div');
+customMarker.innerHTML = `
+  <div class="marker-flip-container">
+    <div class="marker-flip-card">
+      <div class="marker-front">
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" />
+      </div>
+      <div class="marker-back">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111320.png" />
+      </div>
+    </div>
+  </div>
+`;
+
+
+const marker= new maplibregl.Marker({color: "red", element: customMarker} )
 .setLngLat(listing.geometry.coordinates) //Listing.gemetry.coordinates[0],Listing.geometry.coordinates[1])
 .setPopup(
     new maplibregl.Popup({offset: 25})
