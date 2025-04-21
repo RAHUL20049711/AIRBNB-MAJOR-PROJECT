@@ -1,4 +1,5 @@
 const Listing = require("../models/listing");
+const fetch = require("node-fetch"); 
 
 
 
@@ -32,7 +33,21 @@ module.exports.showListing= async(req,res)=>{
 }
 
 module.exports.createListing= async(req,res,next)=>{
-    
+    try {
+        const location = req.body.listing.location;
+
+        // Geocode using OpenStreetMap (Nominatim)
+        const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(location)}&format=json`);
+        const data = await response.json();
+
+        if (data.length === 0) {
+            req.flash("error", "Location not found!");
+            return res.redirect("/listings/new");
+        }
+
+        const lat = parseFloat(data[0].lat);
+        const lon = parseFloat(data[0].lon);
+        
     
 
 
@@ -46,11 +61,20 @@ module.exports.createListing= async(req,res,next)=>{
     // newListing.category= category;
     
 
+    newListing.geometry = {
+        type: "Point",
+        coordinates: [lon, lat]
+    };
+
 
     let savedListing= await newListing.save();
     console.log(savedListing);
     req.flash("success", "New Listing Created!");
     return res.redirect("/listings");
+
+} catch (err) {
+    next(err);
+}
 }
 
 

@@ -1,17 +1,21 @@
-const map= L.map('map').setView([28.7041, 77.1025], 13);  // Bangalore coords
+// Access listing data passed from EJS
+document.addEventListener("DOMContentLoaded", () => {
+const listing = window.listingData; // This should be provided via EJS
+
+const map = L.map('map').setView(listing.geometry.coordinates.reverse(), 13); // reverse to [lat, lng]
 
 // Add OpenStreetMap tiles
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-var geocoder = L.Control.geocoder({
-  defaultMarkGeocode: false  // Disable automatic marker when searching
-}).addTo(map);
 
 
 
-// Add a marker
-const marker = L.marker([28.7041, 77.1025]).addTo(map)
-  .bindPopup('You are here!')
+// Add marker at listing location
+L.marker(listing.geometry.coordinates).addTo(map)
+  .bindPopup(`<strong>${listing.title}</strong><br>${listing.location}`)
   .openPopup();
+});
+
+
