@@ -20,7 +20,7 @@
     .filter p{
       font-size: 0.8rem;
     }
-    #tax-info {
+    .tax-info {
       display: none;
     }
     .tax-toggle{
@@ -126,8 +126,12 @@
           
         }
       });
+
+      let filters = document.getElementsByClassName("filter");
+      for(let filter of filters){
+        filter.addEventListener("click")
+      }
     </script>
 
 </body>
-
 

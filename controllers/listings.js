@@ -35,7 +35,7 @@ module.exports.createListing= async(req,res,next)=>{
     
         const location= req.body.listing.location;
         const maptiler = await import('@maptiler/sdk');
-        maptiler.config.apiKey = `${mapToken}`;
+        maptiler.config.apiKey = `${MAP_TOKEN}`;
     
         const result = await maptiler.geocoding.forward(location,
             {limit: 1,
@@ -49,10 +49,11 @@ module.exports.createListing= async(req,res,next)=>{
 
     let url= req.file.path;
     let filename= req.file.filename;
+    let {category} = req.body.listing;
     const newListing= new Listing(req.body.listing);
     newListing.owner= req.user._id;
     newListing.image= {url, filename};
-
+    // newListing.category= category;
     newListing.geometry= result.features[0].geometry;
 
     let savedListing= await newListing.save();
