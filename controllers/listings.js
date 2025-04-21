@@ -2,6 +2,7 @@ const Listing = require("../models/listing");
 
 
 
+
 module.exports.index = async (req, res) => {
     const allListings = await Listing.find({});
     res.render("listings/index.ejs", { allListings })
@@ -33,21 +34,9 @@ module.exports.showListing= async(req,res)=>{
 module.exports.createListing= async(req,res,next)=>{
     
     
-        const location= req.body.listing.location;
-        const { config, geocoding }  = await import('@maptiler/sdk');
-       
-        config.apiKey = process.env.MAP_TOKEN;
-    
-        const result = await geocoding.forward(location,
-            {limit: 1,
-        })
+
+
         
-        
-    
-
-
-   
-
     let url= req.file.path;
     let filename= req.file.filename;
     let {category} = req.body.listing;
@@ -55,7 +44,8 @@ module.exports.createListing= async(req,res,next)=>{
     newListing.owner= req.user._id;
     newListing.image= {url, filename};
     // newListing.category= category;
-    newListing.geometry= result.features[0].geometry;
+    
+
 
     let savedListing= await newListing.save();
     console.log(savedListing);
