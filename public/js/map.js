@@ -1,5 +1,4 @@
-const maplibregl = require('maplibre-gl');
-const { addProtocol } = maplibregl;
+
 const map = new maplibregl.Map({
   container:"map",
 style: `https://api.maptiler.com/maps/streets/style.json?key=${mapToken}`,// stylesheet location
