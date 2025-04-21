@@ -1,5 +1,7 @@
 <% layout("/layouts/boilerplate") %>
 <script  >
+  //  import maplibregl from 'maplibre-gl';
+  //  const { addProtocol } = maplibregl;
    const mapToken= "<%= process.env.MAP_TOKEN %>";
 const listing = JSON.parse('<%- JSON.stringify(listing) %>');
 </script>
@@ -118,6 +120,7 @@ const listing = JSON.parse('<%- JSON.stringify(listing) %>');
         <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
         <script src="/js/map.js"></script>
         <script src="/controllers/listings.js"></script>
+       
 
 
 

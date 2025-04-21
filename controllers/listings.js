@@ -34,10 +34,11 @@ module.exports.createListing= async(req,res,next)=>{
     
     
         const location= req.body.listing.location;
-        const maptiler = await import('@maptiler/sdk');
-        maptiler.config.apiKey = `${MAP_TOKEN}`;
+        const { config, geocoding }  = await import('@maptiler/sdk');
+       
+        config.apiKey = process.env.MAP_TOKEN;
     
-        const result = await maptiler.geocoding.forward(location,
+        const result = await geocoding.forward(location,
             {limit: 1,
         })
         
