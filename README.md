@@ -25,7 +25,7 @@ Backend: Node.js, Express.js
 
 Database: MongoDB + Mongoose
 
-Maps: Maplibre GL JS + MapTiler
+Maps: Leaflet + openstreetmap
 
 Authentication: Passport.js
 
@@ -35,8 +35,7 @@ Deployment: Render
 
 Templating: EJS
 
-📸 Screenshots
-(Insert screenshots of key pages: home, hotel details, map, add listing, etc.)
+
 
 🚀 Getting Started
 Prerequisites
@@ -50,12 +49,11 @@ MapTiler account
 
 Clone and Install
 bash
-Copy
-Edit
 git clone https://github.com/yourusername/wanderlust.git
 cd wanderlust
 npm install
 
+📸 Screenshots
 
 ![Screenshot 2025-04-22 144352](https://github.com/user-attachments/assets/94455b7a-f3ad-4658-bb02-8e8a73c4cecf)
 ![Screenshot 2025-04-22 144551](https://github.com/user-attachments/assets/e0e56ec9-de5a-4758-843a-444779c6c294)
@@ -67,15 +65,12 @@ npm install
 
 
 
-DB_URL=your_mongodb_uri
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
 SECRET=your_session_secret
 Run the App Locally
 bash
-Copy
-Edit
 npm start
 Go to: http://localhost:8080
 
@@ -84,9 +79,6 @@ Check out the live version on Render:
 👉 https://wanderlust-hotel-booking-major-project-1.onrender.com/listings
 
 🗂️ Folder Structure
-csharp
-Copy
-Edit
 ├── models/           # Mongoose schemas
 ├── public/           # Static assets
 ├── routes/           # App routes
